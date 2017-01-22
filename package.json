@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-server": "webpack-dev-server --config webpack.config.js --hot --inline --colors"
+    "dev-server": "webpack-dev-server --config webpack.config.js --hot --inline --colors",
+    "build": "webpack -p --config webpack.production.config.js"
   },
   "author": "",
   "license": "ISC",
