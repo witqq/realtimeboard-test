@@ -46,7 +46,6 @@ export class EmailsEditorController {
         const clipEv: ClipboardEvent = ev.originalEvent as ClipboardEvent;
         const input = clipEv.clipboardData.getData("text");
         const withoutLineBreaks = input.replace(/(\r\n|\n|\r)/gm, ",");
-        debugger;
         (withoutLineBreaks.split(",") || []).forEach(this.addEmail);
         ev.preventDefault();
 
@@ -82,7 +81,7 @@ export class EmailsEditorController {
 
     public addEmail = (newEmail: string) => {
         const scope = this.scope;
-        newEmail.trim();
+        newEmail = newEmail.trim();
         if (newEmail && scope.emails.indexOf(newEmail) === -1) {
             scope.emails.push(newEmail);
         }
