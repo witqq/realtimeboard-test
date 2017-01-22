@@ -1,7 +1,84 @@
-span {
-  color: green;
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+.emails-editor {
+  background-color: #f5f5f5;
+  padding: 28px 40px 30px;
+  font-family: 'Open Sans', serif;
+  max-width: 420px;
+  .title {
+    font-size: 20px;
+    font-weight: lighter;
+    padding-bottom: 35px;
+  }
+  .editor {
+    background-color: #fff;
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border-top: 1px solid #ccc;
+    padding: 3px;
+    width: 100%;
+
+    .emails {
+      display: inline-block;
+      .email-item {
+        background: #d9e8ff;
+        display: inline-block;
+        color: #444;
+        outline: none;
+        vertical-align: middle;
+        cursor: default;
+        overflow: hidden;
+        height: 24px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 12px;
+        padding-left: 10px;
+        padding-right: 7px;
+        margin: 2px 3px 2px 7px;
+        .email-content {
+          max-height: 24px;
+          line-height: 24px;
+          font-weight: 100;
+        }
+        &.error {
+          background-color: transparent;
+          color: #666;
+          .email-content {
+            border-bottom: 1px dashed #d14836;
+          }
+        }
+        .email-delete {
+          cursor: pointer;
+          height: 24px;
+          width: 10px;
+          font-size: 17px;
+          font-weight: lighter;
+          vertical-align: middle;
+          margin-left: -1px;
+        }
+      }
+    }
+
+    .email-input {
+      box-sizing: border-box;
+      display: inline-block;
+      height: 24px;
+      line-height: 24px;
+      white-space: nowrap;
+      overflow: hidden;
+      padding: 0;
+      margin: 0 0 0 4px;
+      vertical-align: middle;
+      resize: none;
+      outline: none;
+      border: none;
+      background: transparent;
+      color: #4d4d4d;
+    }
+
+  }
+
 }
 
-span.error {
-  color: red;
-}

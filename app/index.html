@@ -7,8 +7,12 @@
 <body>
 <div ng-controller="AppController as controller">
     <emails-editor emails="controller.emails" control="controller.emailsControl"></emails-editor>
-    <button ng-click="controller.showCnt()"> show cnt</button>
-    <button ng-click="controller.addRandomEmail()"> add random</button>
+    <div class="buttons">
+        <button class="btn" ng-click="controller.addRandomEmail()">Add email</button>
+        <button class="btn" style="margin-left: 20px;padding: 5px 10px;"
+                ng-click="controller.showCnt()">Get emails count
+        </button>
+    </div>
 </div>
 <script src="bundle.js"></script>
 </body>

@@ -1,10 +1,11 @@
 import angular = require("angular");
 import {getRandomEmail} from "./utils/utils";
 import {EmailsEditorController} from "./EmailsEditor/EmailsEditor";
+import "./app.less";
 
 
 class AppController {
-    public emails: Array<string>;
+    public emails: Array<string>=["sidorov@mail.ru"];
     private emailsControl: EmailsEditorController;
 
     public showCnt() {

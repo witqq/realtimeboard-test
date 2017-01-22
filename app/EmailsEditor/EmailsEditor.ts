@@ -12,6 +12,7 @@ interface EmailEditorScope extends IScope {
     addEmail: (email?: string) => void;
     control: EmailsEditorController;
     keyPress: (ev: JQueryEventObject) => void;
+    keyUp: (ev: JQueryEventObject) => void;
     testEmail: (input: string) => boolean;
     removeEmail: (input: string) => void;
     paste: (ev: JQueryEventObject) => void;
@@ -40,6 +41,10 @@ export class EmailsEditorController {
         scope.testEmail = validateEmail;
         scope.removeEmail = this.removeEmail;
         scope.paste = this.onPaste
+        scope.keyUp = (ev:JQueryEventObject) => {
+            const parent=$(ev.target).parent();
+            parent.scrollTop(parent[0].scrollHeight)
+        }
     }
 
     private onPaste = (ev: JQueryEventObject) => {
@@ -82,6 +87,7 @@ export class EmailsEditorController {
     };
 
     public addEmail = (newEmail: string) => {
+        if (!newEmail) return;
         const scope = this.scope;
         newEmail = newEmail.trim();
         if (newEmail && scope.emails.indexOf(newEmail) === -1) {

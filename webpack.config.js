@@ -39,6 +39,13 @@ module.exports = {
             {test: /\.html$/, loader: 'raw'},
             {test: /\.css$/, loader: 'style!css'},
             {test: /\.less$/, loader: 'style-loader!css-loader!less-loader'},
+            {test: /\.otf(\?[a-z0-9]+)?$/, loader: 'url-loader?limit=10000&name=[name]-[hash].[ext]'},
+            {test: /\.woff(\?.+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff"},
+            {test: /\.woff2(\?.+)?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff2"},
+            {test: /\.ttf(\?.+)?$/, loader: "url-loader?limit=10000&mimetype=application/octet-stream"},
+            {test: /\.eot(\?.+)?$/, loader: "file-loader"},
+            {test: /\.(svg|jpe?g|png|gif)(\?.+)?$/, loader: "file-loader"},
+            {test: /\.cur(\?.+)?$/, loader: "file-loader"}
         ]
     }
 };
