@@ -4,7 +4,7 @@ import IDirective = angular.IDirective;
 import IScope = angular.IScope;
 import IAttributes = angular.IAttributes;
 import "./emailsEditor.less";
-import {validateEmail} from "../utils/utils";
+import {validateEmail} from "./utils";
 
 interface EmailEditorScope extends IScope {
     emails: Array<string>;
@@ -33,9 +33,9 @@ export class EmailsEditorController {
     static $inject = ["$scope"];
 
     constructor(private scope: EmailEditorScope) {
+        scope.control = this;
         scope.emails = scope.emails || [];
         scope.addEmail = this.addEmailFormInput;
-        scope.control = this;
         scope.keyPress = this.onKeyPress;
         scope.testEmail = validateEmail;
         scope.removeEmail = this.removeEmail;
@@ -48,15 +48,15 @@ export class EmailsEditorController {
         const withoutLineBreaks = input.replace(/(\r\n|\n|\r)/gm, ",");
         (withoutLineBreaks.split(",") || []).forEach(this.addEmail);
         ev.preventDefault();
-
-    }
+    };
 
     private removeEmail = (email: string) => {
-        const idx = this.scope.emails.indexOf(email);
+        const scope = this.scope;
+        const idx = scope.emails.indexOf(email);
         if (idx !== -1) {
-            this.scope.emails.splice(idx, 1);
+            scope.emails.splice(idx, 1);
         }
-    }
+    };
 
     private onKeyPress = (event: JQueryKeyEventObject) => {
         if (event.which === 13 || event.which == 44) {
@@ -67,17 +67,19 @@ export class EmailsEditorController {
         if (event.which === 8 && !$(event.target).val()) {
             this.removeLast();
         }
-    }
+    };
 
     private removeLast = () => {
-        const idx = this.scope.emails.length - 1;
-        this.scope.emails.splice(idx, 1);
-    }
+        const scope = this.scope;
+        const idx = scope.emails.length - 1;
+        scope.emails.splice(idx, 1);
+    };
 
     private addEmailFormInput = () => {
-        this.addEmail(this.scope.currentInput);
-        this.scope.currentInput = ""
-    }
+        const scope = this.scope;
+        this.addEmail(scope.currentInput);
+        scope.currentInput = ""
+    };
 
     public addEmail = (newEmail: string) => {
         const scope = this.scope;
@@ -86,8 +88,6 @@ export class EmailsEditorController {
             scope.emails.push(newEmail);
         }
     }
-
-
 }
 
 export const EmailsEditorModule = angular.module('directives.emailsEditor', [])
