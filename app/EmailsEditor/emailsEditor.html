@@ -1,0 +1,11 @@
+<div ng-repeat="email in emails">
+    <span ng-class="!testEmail(email) && 'error' || ''">
+        {{email}}
+        <span ng-click="removeEmail(email)"> remove</span>
+    </span>
+</div>
+<input type="text"
+       ng-model="currentInput"
+       ng-blur="addEmail()"
+       ng-keydown="keyPress($event)"
+       ng-paste="paste($event)"/>
