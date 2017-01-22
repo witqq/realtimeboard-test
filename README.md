@@ -16,10 +16,8 @@
   `npm run dev-server`
   
   
- - then open 
- 
-http://localhost:8080/
- 
+ - then open  
+http://localhost:8080/ 
  in your browser
 
 ## demo
