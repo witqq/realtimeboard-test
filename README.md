@@ -11,10 +11,16 @@
 
   `yarn`
 
- - then run dev-server:
+ - run dev-server:
  
   `npm run dev-server`
-
+  
+  
+ - then open 
+ 
+http://localhost:8080/
+ 
+ in your browser
 
 ## demo
 
