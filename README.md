@@ -1,11 +1,24 @@
 # realtimeboard-test
 
-## install 
-`npm install`
+## install and run 
+ - checkout repository
 
-or
+ - execute:
 
-`yarn`
+  `npm install`
+
+ - or if you are using yarn:
+
+  `yarn`
+
+ - run dev-server:
+ 
+  `npm run dev-server`
+  
+  
+ - then open  
+http://localhost:8080/ 
+ in your browser
 
 ## demo
 
