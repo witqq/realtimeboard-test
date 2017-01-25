@@ -5,11 +5,12 @@
     <title>RealTimeBoard test</title>
 </head>
 <body>
-<div ng-controller="AppController as controller">
-    <emails-editor emails="controller.emails" control="controller.emailsControl"></emails-editor>
-    <div class="buttons">
-        <button class="btn" ng-click="controller.addRandomEmail()">Add email</button>
-        <button class="btn" style="margin-left: 20px;padding: 5px 10px;"
+<div ng-controller="AppController as controller" class="app">
+    <div class="app__title">Share “Board name“ with others</div>
+    <emails-editor emails="controller.emails"></emails-editor>
+    <div class="app__buttons">
+        <button class="app__btn" ng-click="controller.addRandomEmail()">Add email</button>
+        <button class="app__btn" style="margin-left: 20px;padding: 5px 10px;"
                 ng-click="controller.showCnt()">Get emails count
         </button>
     </div>
