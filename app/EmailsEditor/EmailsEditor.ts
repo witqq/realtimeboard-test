@@ -18,14 +18,39 @@ interface EmailEditorScope extends IScope {
     paste: (ev: JQueryEventObject) => void;
 }
 
+type StringMap<T>= {[index: string]: T};
+
 const emailsEditor = (): IDirective => ({
     restrict: 'E',
     scope: {
-        emails: "=",
-        control: "="
+        emails: "="
     },
     template: require('./emailsEditor.html'),
-    controller: EmailsEditorController
+    controller: EmailsEditorController,
+    link: (scope: EmailEditorScope) => {
+        scope.$watchCollection("emails", (newValue: Array<string>, oldValue: Array<string>) => {
+            // для накапливания уже встреченных адресов используем мапу, а не коллекцию
+            const alreadyExists: StringMap<boolean> = {};
+            newValue.filter(newEmail => {
+                // Если такой email уже был, то пропускаем
+                if (alreadyExists[newEmail]) {
+                    return false;
+                }
+                // Если email был в старой версии коллекции не запускаем проверку
+                if (oldValue.indexOf(newEmail) !== -1) {
+                    alreadyExists[newEmail] = true;
+                    return true;
+                }
+                // Если email прошел проверку оставляем его, так же заносим в мапу уже присутсвующих
+                if (validateEmail(newEmail)) {
+                    alreadyExists[newEmail] = true;
+                    return true;
+                }
+                return false;
+            });
+            scope.emails = newValue;
+        });
+    }
 } as IDirective);
 
 
@@ -41,8 +66,8 @@ export class EmailsEditorController {
         scope.testEmail = validateEmail;
         scope.removeEmail = this.removeEmail;
         scope.paste = this.onPaste
-        scope.keyUp = (ev:JQueryEventObject) => {
-            const parent=$(ev.target).parent();
+        scope.keyUp = (ev: JQueryEventObject) => {
+            const parent = $(ev.target).parent();
             parent.scrollTop(parent[0].scrollHeight)
         }
     }

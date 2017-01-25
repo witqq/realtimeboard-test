@@ -1,19 +1,17 @@
 <div class="emails-editor">
-    <div class="title">Share“Board name“with others</div>
-    <div class="editor">
-        <span ng-repeat="email in emails" class="emails">
-            <span class="email-item" ng-class="!testEmail(email) && 'error' || ''">
-                <span class="email-content">{{email}}</span>
-                <span class="email-delete" ng-click="removeEmail(email)">×</span>
+        <span ng-repeat="email in emails" class="emails-editor__emails">
+            <span class="emails-editor__email-item" ng-class="{'emails-editor__email_item_error': !testEmail(email)}">
+                <span class="emails-editor__email-content"
+                      ng-class="{'emails-editor__email-content_error': !testEmail(email)}">{{email}}</span>
+                <span class="emails-editor__email-delete" ng-click="removeEmail(email)">×</span>
             </span>
         </span>
-        <input type="text"
-               ng-model="currentInput"
-               ng-blur="addEmail()"
-               ng-keydown="keyPress($event)"
-               ng-paste="paste($event)"
-               placeholder="add more people..."
-               class="email-input"
-               ng-keyup="keyUp($event)"/>
-    </div>
+    <input type="text"
+           ng-model="currentInput"
+           ng-blur="addEmail()"
+           ng-keydown="keyPress($event)"
+           ng-paste="paste($event)"
+           placeholder="add more people..."
+           class="emails-editor__email-input"
+           ng-keyup="keyUp($event)"/>
 </div>
